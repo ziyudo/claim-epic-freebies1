@@ -1,0 +1,33 @@
+name: Claim Free Games
+
+on: # When to run this workflow
+    push: # When you edit this repo
+
+# Uncomment the below lines to enable manual trigger.
+
+#    watch:
+#        types: [started] # When repo owner stars this repo
+
+    schedule:
+        - cron: "0 0 * * *" # Everyday at 00:00 UTC
+
+jobs:
+    claim:
+        runs-on: ubuntu-latest
+
+        timeout-minutes: 5 # Automatically stop after 5 minutes
+
+        steps:
+            - name: Setup repo
+              uses: actions/checkout@v2
+              with:
+                  repository: "Revadike/epicgames-freebies-claimer"
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v1
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Get Epic Freebies
+              run: npm run start ${{ secrets.USERNAME }} ${{ secrets.PASSWORD }} 0 ${{ secrets.SECRETKEY }}
