@@ -27,7 +27,7 @@ jobs:
               uses: actions/setup-node@v1
 
             - name: Install dependencies
-              run: npm install
+              run: npm install/usr/bin/bash -e /home/runner/work/_temp/7676a701-ced5-47fe-be17-90ccdabaaf91.sh
 
             - name: Get Epic Freebies
               run: npm run start ${{ secrets.USERNAME }} ${{ secrets.PASSWORD }} 0 ${{ secrets.SECRETKEY }}
